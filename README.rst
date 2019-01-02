@@ -26,7 +26,7 @@ Installation
 Usage
 =====
 
- You can use webtest_asgi with any ASGI application. Here is example usage with `Starlette <https://github.com/encode/starlette>`_.
+You can use webtest-asgi with any ASGI application. Here is example usage with `Starlette <https://github.com/encode/starlette>`_.
 
 .. code-block:: python
 

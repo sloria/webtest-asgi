@@ -10,18 +10,17 @@ __version__ = "0.0.1"
 
 
 def AsgiToWsgi(asgi_app: ASGIApp) -> typing.Callable:
-    client = TestClient(asgi_app)
-
     def handle(environ, start_response):
         req = webob.Request(environ)
-        response = client.request(
-            method=req.method,
-            url=req.path,
-            data=req.body,
-            params=req.params,
-            headers=dict(req.headers),
-            cookies=dict(req.cookies),
-        )
+        with TestClient(asgi_app) as client:
+            response = client.request(
+                method=req.method,
+                url=req.path,
+                data=req.body,
+                params=req.params,
+                headers=dict(req.headers),
+                cookies=dict(req.cookies),
+            )
         res = webob.Response(
             body=response.content,
             status=response.status_code,
