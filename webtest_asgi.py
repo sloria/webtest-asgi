@@ -9,7 +9,12 @@ from starlette.types import ASGIApp
 __version__ = "0.0.1"
 
 
-def AsgiToWsgi(asgi_app: ASGIApp) -> typing.Callable:
+WSGIApp = typing.Callable[
+    [typing.MutableMapping, typing.Callable], typing.List[typing.ByteString]
+]
+
+
+def AsgiToWsgi(asgi_app: ASGIApp) -> WSGIApp:
     def handle(environ, start_response):
         req = webob.Request(environ)
         with TestClient(asgi_app) as client:

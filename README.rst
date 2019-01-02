@@ -6,7 +6,7 @@ webtest-asgi
   :alt: pypi badge
   :target: https://badge.fury.io/py/webtest-asgi
 
-.. image:: https://badgen.net/travis/sloria/webtest-asgi
+.. image:: https://badgen.net/travis/sloria/webtest-asgi/master
   :alt: travis-ci status
   :target: https://travis-ci.org/sloria/webtest-asgi
 
