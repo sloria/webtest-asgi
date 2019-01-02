@@ -11,18 +11,17 @@ jobs:
   - { python: '3.6', env: TOXENV=py36 }
   - { python: '3.7', env: TOXENV=py37, dist: xenial, sudo: true }
 
-  # - stage: PyPI Release
-  #   if: tag IS present
-  #   python: "3.6"
-  #   env: []
-  #   install: skip
-  #   script: skip
-  #   deploy:
-  #     provider: pypi
-  #     user: sloria
-  #     on:
-  #       tags: true
-  #     distributions: sdist bdist_wheel
-  #     # TODO
-  #     password:
-  #       secure: EyKV0N3u3Ism+QOw8dX2smjaa2X5PipKJFuB3JCkUvOFlAs9TVF81ohaPQ8VhhU7/UgR3usi6AmC8TlQtZ/jwxw8yhDFL7zJQ5rIrQnrcEj4GCrzkw6BWth71iquyXt3tr1jobz3xv6l19kJg5IB39zTvWuxVWAB7wEUYOgF4hU=
+  - stage: PyPI Release
+    if: tag IS present
+    python: "3.6"
+    env: []
+    install: skip
+    script: skip
+    deploy:
+      provider: pypi
+      user: sloria
+      on:
+        tags: true
+      distributions: sdist bdist_wheel
+      password:
+        secure: xt+FFmm1iNK2rld8Kv27xuSLO9SieAwNJ9Ayn4LzSzt/0H+MOyPOdGFtD9rKL/k7bwhuSzCRffDkJgG5+Y1e6xnNFGE8vIODFwlvAyr5ren7G32dUNojrBnkQ2a1ZkxuyZsKqsS7Oel37kJdC5jE2DbaeSRAmteooI6FHZigGYz+Q+ME8iIV8f2C4wunWLvcV59kGg95fslLV5huad4O8pKjCdEksKYO8YXaNpWVbyq1Um36Vk1j/BR/YP1UhmKyrb56JzCvLkiByb8+a0Wjoog96OtoLJjpFb240RSCNSzw4j0Az8eSqeB7J2f6KYvqgI9hMZRT9A/uk1bVZoM5Frxgjpnht0Fle2VFdfxgrHRwv8dcFmdoBbaBP4xndRLzAEzw06P0zPML5J3TYTe0v578fDs9iDzlC4yQ0kW4QI54wIz7W4F4RqwtkeEWsqpBywHZUX4iJ6bYBv4DsfgEkf9aalncd4qA3X6Xg8K0RAHF27ASguojaKEGuCVVKfTRgUEHlkjXal9JtoAqxmfXcGPyXyRE97v5nzNyUct6kNgdhQbntrT6QJDUcq8+W0tDbFJXz4PT77vG8KhAMdtm8ZDRvhlOM1t5wQp1XMh3rdiV8HaEah5kWftasP+0w/gKgPYWypTTCLRCTITAuZK0n2GCgNGqREbCZkXvLFBArKY=
