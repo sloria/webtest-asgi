@@ -14,9 +14,7 @@ EXTRAS_REQUIRE = {
     "tests": ["pytest"],
     "lint": ["flake8==3.6.0", "flake8-bugbear==18.8.0", "pre-commit==1.13.0"],
 }
-EXTRAS_REQUIRE["dev"] = (
-    EXTRAS_REQUIRE["tests"] + EXTRAS_REQUIRE["lint"] + ["ptpython", "tox"]
-)
+EXTRAS_REQUIRE["dev"] = EXTRAS_REQUIRE["tests"] + EXTRAS_REQUIRE["lint"] + ["tox"]
 
 
 def find_version(fname):
