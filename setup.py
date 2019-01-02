@@ -1,7 +1,14 @@
 import re
 from setuptools import setup
 
-INSTALL_REQUIRES = ["webtest", "starlette", "requests", "python-multipart"]
+INSTALL_REQUIRES = [
+    "webtest",
+    "starlette>=0.9.0",
+    # Needed by starlette's TestClient
+    "requests",
+    # Needed by starlette for form parsing
+    "python-multipart",
+]
 
 EXTRAS_REQUIRE = {
     "tests": ["pytest"],
