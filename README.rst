@@ -14,7 +14,7 @@ webtest-asgi
    :target: https://github.com/ambv/black
    :alt: Code style: Black
 
-webtest-asgi provides integration of WebTest with ASGI applications.
+webtest-asgi provides integration of `WebTest <https://docs.pylonsproject.org/projects/webtest/>`_ with  `ASGI <https://asgi.readthedocs.io/>`_ applications.
 
 Installation
 ============
@@ -29,8 +29,6 @@ Usage
 You can use webtest-asgi with any ASGI application. Here is example usage with `Starlette <https://github.com/encode/starlette>`_.
 
 .. code-block:: python
-
-    import asyncio
 
     from starlette.applications import Starlette
     from starlette.responses import JSONResponse
