@@ -20,9 +20,8 @@ def AsgiToWsgi(asgi_app: ASGIApp) -> WSGIApp:
         with TestClient(asgi_app) as client:
             response = client.request(
                 method=req.method,
-                url=req.path,
+                url=req.url,
                 data=req.body,
-                params=req.params,
                 headers=dict(req.headers),
                 cookies=dict(req.cookies),
             )

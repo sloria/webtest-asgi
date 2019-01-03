@@ -36,6 +36,10 @@ def app():
     async def always_error(request):
         return JSONResponse({"error": "oh no!"}, status_code=422)
 
+    @app_.route("/multi", "GET")
+    async def multi_param(request):
+        return JSONResponse(request.query_params.getlist("name"))
+
     return app_
 
 
@@ -80,3 +84,8 @@ def test_error(wt):
 def test_404(wt):
     res = wt.get("/not_found", expect_errors=True)
     assert res.status_code == 404
+
+
+def test_multi_param(wt):
+    res = wt.get("/multi?name=Steve&name=Loria")
+    assert res.json == ["Steve", "Loria"]
