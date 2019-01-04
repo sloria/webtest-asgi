@@ -16,6 +16,15 @@ webtest-asgi
 
 webtest-asgi provides integration of `WebTest <https://docs.pylonsproject.org/projects/webtest/>`_ with  `ASGI <https://asgi.readthedocs.io/>`_ applications.
 
+Disclaimer
+==========
+
+You should probably use Starlette's `TestClient <https://www.starlette.io/testclient/>`_ 
+instead of this package for testing ASGI applications. 
+This package was created to test `webargs-starlette <https://github.com/sloria/webargs-starlette>`_ using
+webargs' ``CommonTestCase``, which uses WebTest to test common
+functionality across multiple web frameworks.
+
 Installation
 ============
 ::
