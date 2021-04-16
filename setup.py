@@ -12,7 +12,7 @@ INSTALL_REQUIRES = [
 
 EXTRAS_REQUIRE = {
     "tests": ["pytest"],
-    "lint": ["flake8==3.9.0", "flake8-bugbear==20.11.1", "pre-commit~=2.7"],
+    "lint": ["flake8==3.9.1", "flake8-bugbear==20.11.1", "pre-commit~=2.7"],
 }
 EXTRAS_REQUIRE["dev"] = EXTRAS_REQUIRE["tests"] + EXTRAS_REQUIRE["lint"] + ["tox"]
 
