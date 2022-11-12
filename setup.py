@@ -4,15 +4,15 @@ from setuptools import setup
 INSTALL_REQUIRES = [
     "webtest",
     "starlette>=0.9.0",
-    # Needed by starlette's TestClient
-    "requests",
+    "requests~=2.28.0",  # starlette <= v0.20.4 requires requests
+    "httpx~=0.23.0",  # starlette >= v0.21.0 requires httpx for TestClient
     # Needed by starlette for form parsing
     "python-multipart",
 ]
 
 EXTRAS_REQUIRE = {
     "tests": ["pytest"],
-    "lint": ["flake8==3.9.2", "flake8-bugbear==20.11.1", "pre-commit~=2.7"],
+    "lint": ["flake8==5.0.4", "flake8-bugbear==22.10.27", "pre-commit~=2.20"],
 }
 EXTRAS_REQUIRE["dev"] = EXTRAS_REQUIRE["tests"] + EXTRAS_REQUIRE["lint"] + ["tox"]
 
@@ -59,10 +59,11 @@ setup(
         "Environment :: Web Environment",
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
-        "Programming Language :: Python :: 3.6",
         "Programming Language :: Python :: 3.7",
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
+        "Programming Language :: Python :: 3.10",
+        "Programming Language :: Python :: 3.11",
         "Topic :: Software Development :: Testing",
     ],
 )
