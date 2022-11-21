@@ -6,7 +6,7 @@ from starlette.testclient import TestClient
 from starlette.types import ASGIApp
 
 
-__version__ = "1.0.1"
+__version__ = "1.1.0"
 
 
 WSGIApp = typing.Callable[
