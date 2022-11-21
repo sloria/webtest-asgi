@@ -16,21 +16,34 @@ WSGIApp = typing.Callable[
 
 def AsgiToWsgi(asgi_app: ASGIApp) -> WSGIApp:
     def handle(environ, start_response):
+        """
+        Support logic and avoiding deprecation warnings for httpx-based TestClient
+        Starlette (from version >=0.21.0) uses httpx as a base for TestClient's logic
+        """
         req = webob.Request(environ)
-        with TestClient(asgi_app) as client:
+        with TestClient(asgi_app, cookies=dict(req.cookies)) as client:
+            content_kwargs = {}
+            # sending raw-bytes content must be through "content" argument
+            # avoiding DeprecationWarning: Use 'content=<...>'
+            # to upload raw bytes/text content.
+            if req.body is not None and not isinstance(req.body, dict):
+                content_kwargs["content"] = req.body
+            else:
+                content_kwargs["data"] = req.body
+
             response = client.request(
                 method=req.method,
                 url=req.url,
-                data=req.body,
                 headers=dict(req.headers),
-                cookies=dict(req.cookies),
+                **content_kwargs,
             )
+
         res = webob.Response(
             body=response.content,
             status=response.status_code,
             content_type=response.headers.get("content-type"),
             headerlist=list(response.headers.items()),
-            charset=response.apparent_encoding,
+            charset=response.encoding,
         )
         start_response(res.status, res.headerlist)
         return res.app_iter
