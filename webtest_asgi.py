@@ -1,6 +1,5 @@
 import typing
 
-import starlette
 import webob
 import webtest
 from starlette.testclient import TestClient
@@ -16,8 +15,11 @@ WSGIApp = typing.Callable[
 
 
 def AsgiToWsgi(asgi_app: ASGIApp) -> WSGIApp:
-    def _handle_with_httpx(environ, start_response):
-        """Support logic and avoiding deprecation warnings for httpx-based TestClient"""
+    def handle(environ, start_response):
+        """
+        Support logic and avoiding deprecation warnings for httpx-based TestClient
+        Starlette (from version >=0.21.0) uses httpx as a base for TestClient's logic
+        """
         req = webob.Request(environ)
         with TestClient(asgi_app, cookies=dict(req.cookies)) as client:
             content_kwargs = {}
@@ -46,34 +48,7 @@ def AsgiToWsgi(asgi_app: ASGIApp) -> WSGIApp:
         start_response(res.status, res.headerlist)
         return res.app_iter
 
-    def _handle_with_requests(environ, start_response):
-        """Support previous logic for dependencies with old starlette-version"""
-        req = webob.Request(environ)
-        with TestClient(asgi_app) as client:
-            response = client.request(
-                method=req.method,
-                url=req.url,
-                data=req.body,
-                headers=dict(req.headers),
-                cookies=dict(req.cookies),
-            )
-
-        res = webob.Response(
-            body=response.content,
-            status=response.status_code,
-            content_type=response.headers.get("content-type"),
-            headerlist=list(response.headers.items()),
-            charset=response.apparent_encoding,  # noqa
-        )
-        start_response(res.status, res.headerlist)
-        return res.app_iter
-
-    if starlette.__version__ >= "0.21.0":
-        # New starlette version uses httpx as a base for TestClient's logic
-        return _handle_with_httpx
-    else:
-        # Previous starlette version uses requests instead
-        return _handle_with_requests
+    return handle
 
 
 class TestApp(webtest.TestApp):

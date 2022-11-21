@@ -3,8 +3,7 @@ from setuptools import setup
 
 INSTALL_REQUIRES = [
     "webtest",
-    "starlette>=0.9.0",
-    "requests~=2.28.0",  # starlette <= v0.20.4 requires requests
+    "starlette>=0.21.0",
     "httpx~=0.23.0",  # starlette >= v0.21.0 requires httpx for TestClient
     # Needed by starlette for form parsing
     "python-multipart",
