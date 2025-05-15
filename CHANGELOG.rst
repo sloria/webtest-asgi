@@ -2,7 +2,19 @@
 Changelog
 *********
 
-1.1.0 (unreleased)
+unreleased
+==========
+
+Fixes:
+
+* Allow newer versions of httpx to be installed.
+
+Other:
+
+* Test against Python 3.9-3.13.
+* **Backwards-incompatible**: Drop support for Python 3.8.
+
+1.1.0 (2022-11-21)
 ==================
 
 Features:

@@ -1,0 +1,69 @@
+[project]
+name = "webtest-asgi"
+version = "1.1.0"
+description = "webtest-asgi provides integration of WebTest with ASGI applications"
+readme = "README.rst"
+license = { file = "LICENSE" }
+maintainers = [{ name = "Steven Loria", email = "sloria1@gmail.com" }]
+classifiers = [
+  "Intended Audience :: Developers",
+  "License :: OSI Approved :: MIT License",
+  "Natural Language :: English",
+  "Programming Language :: Python :: 3",
+  "Programming Language :: Python :: 3.9",
+  "Programming Language :: Python :: 3.10",
+  "Programming Language :: Python :: 3.11",
+  "Programming Language :: Python :: 3.12",
+  "Programming Language :: Python :: 3.13",
+  "Topic :: System :: Shells",
+]
+requires-python = ">=3.9"
+dependencies = [
+  "webtest",
+  "starlette>=0.21.0",
+  "httpx>=0.23.0",     # starlette >= v0.21.0 requires httpx for TestClient
+  # Needed by starlette for form parsing
+  "python-multipart",
+]
+
+[project.urls]
+Issues = "https://github.com/sloria/webtest-asgi/issues"
+Source = "https://github.com/sloria/webtest-asgi"
+
+[project.optional-dependencies]
+tests = ["pytest"]
+dev = ["webtest-asgi[tests]", "tox", "pre-commit>=3.5,<5.0"]
+
+
+[build-system]
+requires = ["flit_core<4"]
+build-backend = "flit_core.buildapi"
+
+[tool.flit.sdist]
+include = ["tests/", "CHANGELOG.rst", "CONTRIBUTING.md", "tox.ini"]
+
+[tool.ruff]
+src = ["src"]
+fix = true
+show-fixes = true
+output-format = "full"
+
+[tool.ruff.format]
+docstring-code-format = true
+
+[tool.ruff.lint]
+ignore = ["E203", "E266", "E501", "E731"]
+select = [
+  "B",  # flake8-bugbear
+  "E",  # pycodestyle error
+  "F",  # pyflakes
+  "I",  # isort
+  "UP", # pyupgrade
+  "W",  # pycodestyle warning
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/*" = ["E721"]
+
+[tool.mypy]
+ignore_missing_imports = true

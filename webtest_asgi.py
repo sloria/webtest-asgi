@@ -5,12 +5,8 @@ import webtest
 from starlette.testclient import TestClient
 from starlette.types import ASGIApp
 
-
-__version__ = "1.1.0"
-
-
 WSGIApp = typing.Callable[
-    [typing.MutableMapping, typing.Callable], typing.List[typing.ByteString]
+    [typing.MutableMapping, typing.Callable], list[typing.ByteString]
 ]
 
 
