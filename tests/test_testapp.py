@@ -1,13 +1,11 @@
 import pytest
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
-
 from webtest_asgi import TestApp as WebTestApp
 
 
 @pytest.fixture()
 def app():
-
     app_ = Starlette()
 
     @app_.route("/")
