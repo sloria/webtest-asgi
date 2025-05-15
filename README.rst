@@ -3,16 +3,13 @@ webtest-asgi
 ************
 
 .. image:: https://badgen.net/pypi/v/webtest-asgi
-  :alt: pypi badge
+  :alt: Latest version
   :target: https://pypi.org/project/webtest-asgi/
 
-.. image:: https://badgen.net/travis/sloria/webtest-asgi/master
-  :alt: travis-ci status
-  :target: https://travis-ci.org/sloria/webtest-asgi
+.. image:: https://github.com/sloria/webtest-asgi/actions/workflows/build-release.yml/badge.svg
+  :alt: Build status
+  :target: https://github.com/sloria/webtest-asgi/actions/workflows/build-release.yml
 
-.. image:: https://badgen.net/badge/code%20style/black/000
-   :target: https://github.com/ambv/black
-   :alt: Code style: Black
 
 webtest-asgi provides integration of `WebTest <https://docs.pylonsproject.org/projects/webtest/>`_ with  `ASGI <https://asgi.readthedocs.io/>`_ applications.
 
