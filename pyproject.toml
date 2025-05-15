@@ -1,6 +1,6 @@
 [project]
 name = "webtest-asgi"
-version = "1.1.0"
+version = "2.0.0"
 description = "webtest-asgi provides integration of WebTest with ASGI applications"
 readme = "README.rst"
 license = { file = "LICENSE" }
