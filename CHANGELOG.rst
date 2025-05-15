@@ -7,12 +7,16 @@ unreleased
 
 Fixes:
 
-* Allow newer versions of httpx to be installed.
+* Remove upper bound on httpx version.
 
 Other:
 
 * Test against Python 3.9-3.13.
+* Support starlette>=0.38.0.
+* Support httpx>=0.27.1.
 * **Backwards-incompatible**: Drop support for Python 3.8.
+* **Backwards-incompatible**: Remove `webtest_asgi.__version__`.
+  Use `importlib.metadata("webtest-asgi")` instead.
 
 1.1.0 (2022-11-21)
 ==================
