@@ -1,44 +1,46 @@
 import pytest
 from starlette.applications import Starlette
 from starlette.responses import JSONResponse
+from starlette.routing import Route
 from webtest_asgi import TestApp as WebTestApp
 
 
 @pytest.fixture()
 def app():
-    app_ = Starlette()
-
-    @app_.route("/")
     async def homepage(request):
         return JSONResponse({"hello": "world"})
 
-    @app_.route("/echo_post", ["POST"])
     async def echo_post(request):
         form_body = await request.form()
         return JSONResponse(dict(form_body))
 
-    @app_.route("/echo_json", ["POST"])
     async def echo_json(request):
         json_body = await request.json()
         return JSONResponse(json_body)
 
-    @app_.route("/echo_headers", ["GET"])
     async def echo_headers(request):
         return JSONResponse(dict(request.headers))
 
-    @app_.route("/echo_params", ["GET"])
     async def echo_params(request):
         return JSONResponse(dict(request.query_params))
 
-    @app_.route("/always_error", ["GET"])
     async def always_error(request):
         return JSONResponse({"error": "oh no!"}, status_code=422)
 
-    @app_.route("/multi", ["GET"])
     async def multi_param(request):
         return JSONResponse(request.query_params.getlist("name"))
 
-    return app_
+    return Starlette(
+        routes=[
+            Route("/", homepage),
+            Route("/echo_post", echo_post, methods=["POST"]),
+            Route("/echo_json", echo_json, methods=["POST"]),
+            Route("/echo_headers", echo_headers, methods=["GET"]),
+            Route("/echo_params", echo_params, methods=["GET"]),
+            Route("/always_error", always_error, methods=["GET"]),
+            Route("/multi", multi_param, methods=["GET"]),
+        ]
+    )
 
 
 @pytest.fixture()

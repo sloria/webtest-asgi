@@ -2,6 +2,14 @@
 Changelog
 *********
 
+3.0.0 (unreleased)
+==================
+
+* **Backwards-incompatible**: Drop support for Python 3.9.
+* Test against Python 3.10-3.14.
+* **Backwards-incompatible**: Support starlette>=1.2.0.
+  Drop support for older starlette versions.
+
 2.0.0 (2025-05-14)
 ==================
 
