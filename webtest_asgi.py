@@ -13,8 +13,8 @@ WSGIApp = typing.Callable[
 def AsgiToWsgi(asgi_app: ASGIApp) -> WSGIApp:
     def handle(environ, start_response):
         """
-        Support logic and avoiding deprecation warnings for httpx-based TestClient
-        Starlette (from version >=0.21.0) uses httpx as a base for TestClient's logic
+        Support logic and avoiding deprecation warnings for httpx2-based TestClient
+        Starlette (from version >=1.0) uses httpx2 as a base for TestClient's logic
         """
         req = webob.Request(environ)
         with TestClient(asgi_app, cookies=dict(req.cookies)) as client:

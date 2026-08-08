@@ -13,8 +13,8 @@ jobs:
       fail-fast: false
       matrix:
         include:
-          - { name: "3.9-lowest", python: "3.9", tox: py39-lowest }
-          - { name: "3.13", python: "3.13", tox: py313 }
+          - { name: "3.10-lowest", python: "3.10", tox: py310-lowest }
+          - { name: "3.14", python: "3.14", tox: py314 }
     steps:
       - uses: actions/checkout@v7
       - uses: actions/setup-python@v6

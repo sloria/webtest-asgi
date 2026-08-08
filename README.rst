@@ -38,14 +38,15 @@ You can use webtest-asgi with any ASGI application. Here is example usage with `
 
     from starlette.applications import Starlette
     from starlette.responses import JSONResponse
+    from starlette.routing import Route
     from webtest_asgi import TestApp as WebTestApp
 
-    app = Starlette()
 
-
-    @app.route("/")
     async def homepage(request):
         return JSONResponse({"hello": "world"})
+
+
+    app = Starlette(routes=[Route("/", homepage)])
 
 
     @pytest.fixture()
